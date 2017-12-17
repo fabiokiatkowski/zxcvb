@@ -1,0 +1,124 @@
+.App {
+  text-align: center;
+  width: 100%;
+  display: flex;
+}
+
+
+.App-logo {
+  animation: App-logo-spin infinite 20s linear;
+  height: 80px;
+}
+
+.App-header {
+  background-color: #222;
+  border-radius: 10px 10px 0 0;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.App-title {
+  font-size: 1.5em;
+}
+
+.App-intro {
+  font-size: large;
+}
+
+.maquinas {
+  margin: 2px;
+  border: 1px dashed #000;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.maquinas button {
+  font-size: 0.9em;
+}
+
+.edit {
+  margin: 5px;
+  border: 2px solid #000;
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.edit input,
+.edit select {
+  width: 33.33%;
+  padding: 10px;
+  line-height: 1;
+  font-size: 0.8rem;
+  border: 0;
+  border-bottom: 1px solid #000;
+  border-right: 1px solid #000;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  border-radius: 0;
+  background: #fff;
+}
+
+.edit .small {
+  flex:1;
+}
+
+.edit .medium {
+  flex:2;
+}
+
+
+.edit .large{
+  flex: 3;
+}
+
+.edit input:focus,
+.edit select:focus {
+  outline: 0;
+  background: #fef2de;
+}
+.edit input:last-of-type {
+  width: 100%;
+}
+.edit button {
+  width: 100%;
+  border: 0;
+}
+
+.panel {
+  flex:1;
+  border: 1px solid #000000;
+  margin: 5px;
+  border-radius: 10px;
+  box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
+}
+
+button,
+input[type=submit] {
+  text-transform: uppercase;
+  background: none;
+  border: 1px solid #000;
+  font-weight: 600;
+  font-size: 1.5rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.panel {
+  margin: 5px;
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
