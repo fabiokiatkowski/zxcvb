@@ -2,6 +2,8 @@
   text-align: center;
   width: 100%;
   display: flex;
+  box-sizing: border-box;
+  margin-top: 70px;
 }
 
 
@@ -95,7 +97,7 @@
 .panel {
   flex:1;
   border: 1px solid #000000;
-  margin: 5px;
+  /* margin: 5px; */
   border-radius: 10px;
   box-shadow: 5px 5px 1px rgba(0, 0, 0, 0.3);
 }
@@ -115,7 +117,11 @@ input[type=submit] {
 }
 
 .panel {
-  margin: 5px;
+  /* margin: 5px; */
+}
+
+.calendar {
+  width: 100%;
 }
 
 @keyframes App-logo-spin {

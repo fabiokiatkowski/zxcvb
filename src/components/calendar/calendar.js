@@ -30,9 +30,17 @@ class Calendar extends Component {
   }
 
   render() {
+    let resources = null
+    if (this.props.recursos){
+      resources = Object.keys(this.props.recursos).map(i => {
+        const r = this.props.recursos[i];
+        return {id: r.codigo, title:r.nome};
+      })
+    }
     return (
       <Timeline 
-        groups={this.state.groups}
+        style={{width: "100%"}}
+        groups={resources}
         items={this.state.items}
         defaultTimeStart={moment().add(-12, 'hour')}
         defaultTimeEnd={moment().add(12, 'hour')}

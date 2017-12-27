@@ -7,6 +7,8 @@ import Maquinas from './Maquinas';
 import Produtos from './Produtos';
 import Calendar from './calendar/calendar';
 import Toolbar from './toolbar/Toolbar';
+import Aux from './hoc/Aux';
+import Modal from './UI/Modal/Modal';
 
 class App extends Component {
   constructor() {
@@ -24,7 +26,10 @@ class App extends Component {
       maquinas: [],
       produtos: [],
       owners: [],
-      githubMail: null
+      githubMail: null,
+      showSetores: false,
+      showMaquinas: false,
+      showProdutos: false
     }
   }
 
@@ -111,6 +116,34 @@ class App extends Component {
     });
   }
 
+  showModalHandler = (e) => {
+    switch (e.target.name) {
+      case ('btnSetores'):
+        this.setState({ showSetores: true });
+        break;
+      case ('btnMaquinas'):
+        this.setState({ showMaquinas: true });
+        break;
+      case ('btnProdutos'):
+        this.setState({ showProdutos: true });
+        break;
+      default:
+        break;
+    }
+  }
+
+  hideModalHandler = () => {
+    if (this.state.showSetores) {
+      this.setState({ showSetores: false });
+    }
+    else if (this.state.showMaquinas) {
+      this.setState({ showMaquinas: false });
+    }
+    else if (this.state.showProdutos) {
+      this.setState({ showProdutos: false });
+    }
+  }
+
   renderLogin() {
     return(
       <nav className="login">
@@ -118,6 +151,52 @@ class App extends Component {
         <button onClick={(e) => this.autenticar()}>Autenticar com Github</button>
       </nav>
     )
+  }
+
+  renderModal = () => {
+    if (this.state.showSetores) {
+      return (
+        <Setores 
+            setores={this.state.setores}
+            updateSetor={this.updateSetor}
+            addSetor={this.addSetor}/>
+      );
+    }
+    else if (this.state.showMaquinas) {
+      return (
+        <Maquinas 
+          maquinas={this.state.maquinas}
+          addMaquina={this.addMaquina}
+          updateMaquina={this.updateMaquina}
+          setores={this.state.setores}/>
+      );
+    }
+    else if (this.state.showProdutos) {
+      return (
+        <Produtos
+          updateProduto={this.updateProduto}
+          produtos={this.state.produtos}
+          addProduto={this.addProduto}
+          maquinas={this.state.maquinas}/>
+      );
+    }
+  }
+
+  renderLoggedUser(){
+    return (
+      <div className="App">
+        <Modal
+          show={this.state.showSetores || this.state.showMaquinas || this.state.showProdutos}
+          modalClosed={this.hideModalHandler}
+        >
+          {this.renderModal()}
+        </Modal>      
+        <Calendar 
+          className="calendar"
+          recursos={this.state.maquinas}
+        />
+      </div>
+    );
   }
 
   autenticar() {
@@ -142,29 +221,18 @@ class App extends Component {
   }
   
   render() {
-    if(!this.state.githubMail || !Object.values(this.state.owners).some(item => item === this.state.githubMail)){
-      return (<div>{this.renderLogin()}</div>)
-    }
-
+    const isLogged = !this.state.githubMail || !Object.values(this.state.owners).some(item => item === this.state.githubMail)
+    
     return (
-      <div className="App">
-        <Setores 
-          setores={this.state.setores}
-          updateSetor={this.updateSetor}
-          addSetor={this.addSetor}/>
-        <Maquinas 
-          maquinas={this.state.maquinas}
-          addMaquina={this.addMaquina}
-          updateMaquina={this.updateMaquina}
-          setores={this.state.setores}/>
-        <Produtos
-          updateProduto={this.updateProduto}
-          produtos={this.state.produtos}
-          addProduto={this.addProduto}
-          maquinas={this.state.maquinas}/>
-        <Calendar />
-      </div>
-    );
+      <Aux>
+        <Toolbar 
+          onClickSetores={this.showModalHandler}
+          onClickMaquinas={this.showModalHandler}
+          onClickProdutos={this.showModalHandler}
+        />
+        {isLogged ? this.renderLoggedUser() : this.renderLogin()}
+      </Aux>
+    )
   }
 }
 

@@ -1,13 +1,15 @@
 import React from 'react';
 
-import classes from './Toolbar.css';
+import './Toolbar.css';
 
-const toolbar = () => {
+const toolbar = (props) => {
   return (
-    <header className={classes.Toolbar}>
+    <header className="Toolbar">
       <div>MENU</div>
       <nav>
-        ...
+        <button name="btnSetores" onClick={props.onClickSetores}>Setores</button>
+        <button name="btnMaquinas" onClick={props.onClickMaquinas}>Máquinas</button>
+        <button name="btnProdutos" onClick={props.onClickProdutos}>Produtos</button>
       </nav>
     </header>
   );
