@@ -7,7 +7,7 @@ import Maquinas from './Maquinas';
 import Produtos from './Produtos';
 import Calendar from './calendar/calendar';
 import Toolbar from './toolbar/Toolbar';
-import Aux from './hoc/Aux';
+import Aux from './hoc/Auxliar';
 import Modal from './UI/Modal/Modal';
 
 class App extends Component {
