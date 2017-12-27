@@ -5,6 +5,8 @@ import Firebase from 'firebase';
 import Setores from './Setores';
 import Maquinas from './Maquinas';
 import Produtos from './Produtos';
+import Calendar from './calendar/calendar';
+import Toolbar from './toolbar/Toolbar';
 
 class App extends Component {
   constructor() {
@@ -160,6 +162,7 @@ class App extends Component {
           produtos={this.state.produtos}
           addProduto={this.addProduto}
           maquinas={this.state.maquinas}/>
+        <Calendar />
       </div>
     );
   }
